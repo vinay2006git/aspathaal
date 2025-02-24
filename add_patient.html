@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Patient</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ffffff;
+            margin: 0;
+        }
+        header {
+            background-color: rgb(50, 105, 247);
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+        }
+        nav {
+            background-color: #51a4ec;
+            padding: 10px;
+            text-align: center;
+        }
+        nav a {
+            color: rgb(255, 255, 255);
+            padding: 10px;
+            margin: 10px;
+            text-decoration: none;
+        }
+        nav a:hover {
+            background-color: #ffffff;
+            color: black;
+        }
+        .form-container {
+            width: 50%;
+            margin: 50px auto;
+            padding: 20px;
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .form-container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .form-container form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .form-container input[type="text"],
+        .form-container input[type="number"] {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .form-container button {
+            padding: 10px;
+            font-size: 16px;
+            background-color: #347afd;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .form-container button:hover {
+            background-color: #0554ff;
+        }
+        .error {
+            color: red;
+            font-size: 0.9em;
+        }
+    </style>
+    <script>
+        function validateForm(event) {
+            const name = document.getElementById("name").value;
+            const age = document.getElementById("age").value;
+            const weight = document.getElementById("weight").value;
+            const condition = document.getElementById("condition").value;
+            const contact = document.getElementById("contact").value;
+            let isValid = true;
+
+            if (!name) {
+                document.getElementById("nameError").textContent = "Name is required.";
+                isValid = false;
+            } else {
+                document.getElementById("nameError").textContent = "";
+            }
+
+            if (age <= 0) {
+                document.getElementById("ageError").textContent = "Age must be a positive number.";
+                isValid = false;
+            } else {
+                document.getElementById("ageError").textContent = "";
+            }
+
+            if (weight <= 0) {
+                document.getElementById("weightError").textContent = "Weight must be a positive number.";
+                isValid = false;
+            } else {
+                document.getElementById("weightError").textContent = "";
+            }
+
+            if (!condition) {
+                document.getElementById("conditionError").textContent = "Condition is required.";
+                isValid = false;
+            } else {
+                document.getElementById("conditionError").textContent = "";
+            }
+
+            if (!contact || contact.length < 10) {
+                document.getElementById("contactError").textContent = "Valid contact number is required.";
+                isValid = false;
+            } else {
+                document.getElementById("contactError").textContent = "";
+            }
+
+            if (!isValid) {
+                event.preventDefault();
+            }
+        }
+    </script>
+</head>
+<body>
+
+<header>
+    <h1>Add Patient</h1>
+</header>
+
+<nav>
+    <a href="patients.html">Patient Management</a>
+    <a href="medicine.html">Medicine</a>
+    <a href="staff.html">Staff Details</a>
+    <a href="patient_details.html">Patient Details</a>
+</nav>
+
+<div class="form-container">
+    <h2>Enter Patient Details</h2>
+    <form onsubmit="validateForm(event)">
+        <div>
+            <label for="name">Patient Name:</label>
+            <input type="text" id="name" name="name">
+            <div id="nameError" class="error"></div>
+        </div>
+        <div>
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="age">
+            <div id="ageError" class="error"></div>
+        </div>
+        <div>
+            <label for="weight">Weight:</label>
+            <input type="number" id="weight" name="weight">
+            <div id="weightError" class="error"></div>
+        </div>
+        <div>
+            <label for="condition">Condition:</label>
+            <input type="text" id="condition" name="condition">
+            <div id="conditionError" class="error"></div>
+        </div>
+        <div>
+            <label for="contact">Contact:</label>
+            <input type="text" id="contact" name="contact">
+            <div id="contactError" class="error"></div>
+        </div>
+        <button type="submit">Submit</button>
+    </form>
+</div>
+
+</body>
+</html>
